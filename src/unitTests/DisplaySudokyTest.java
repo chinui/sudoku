@@ -11,7 +11,7 @@ class DisplaySudokyTest {
 	void IsA9x9Square() {
 		DisplaySudoku displaySudoku = new DisplaySudoku();
 		// On vérifie qu'on a bien un carré de 9x9
-		int[][] square = displaySudoku.createSquare(1);
+		int[][] square = displaySudoku.createGrid(1);
 		Assert.assertEquals("Nombre de lignes", square.length, 9);
 
 		if (square.length == 9) {
@@ -56,7 +56,7 @@ class DisplaySudokyTest {
 				{ false, false, false, false, false, false, false, false, false } };
 
 		//On vérifie que chaque ligne contient les 9 chffres
-		int[][] square = displaySudoku.createSquare(1);
+		int[][] square = displaySudoku.createGrid(1);
 		for (int i = 0; i < 9; i++) {
 			for (int j = 0; j < 9; j++) {
 				int number = square[i][j];

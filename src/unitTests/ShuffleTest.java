@@ -55,7 +55,7 @@ class ShuffleTest {
 				{ false, false, false, false, false, false, false, false, false },
 				{ false, false, false, false, false, false, false, false, false } };
 
-		// On vérifie que chaque ligne contient les 9 chffres
+		// On vérifie que chaque ligne contient les 9 chiffres
 		for (int i = 0; i < 9; i++) {
 			for (int j = 0; j < 9; j++) {
 				int number = grid[i][j];
@@ -63,7 +63,7 @@ class ShuffleTest {
 			}
 		}
 
-		// On vérifie que chaque colonne contient les 9 chffres
+		// On vérifie que chaque colonne contient les 9 chiffres
 		for (int i = 0; i < 9; i++) {
 			for (int j = 0; j < 9; j++) {
 				int number = grid[j][i];
@@ -74,7 +74,7 @@ class ShuffleTest {
 		Assert.assertArrayEquals("Tout les lignes ont les 9 chiffres", allGood, rowCheck);
 		Assert.assertArrayEquals("Tout les colonnes ont les 9 chiffres", allGood, colunmCheck);
 		
-		Assert.assertNotEquals("Les deux grilles doivent avoir été mélangées", originalGrid, grid);
+		Assert.assertNotEquals("Les deux grilles doivent être différentes, car l'une a été mélangée.", originalGrid, grid);
 	}
 
 	@Test

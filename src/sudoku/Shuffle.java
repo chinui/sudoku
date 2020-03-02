@@ -7,6 +7,14 @@ package sudoku;
 public class Shuffle {
 
 	/*
+	 * On va utiliser toutes les autres méthodes codées ci-dessous pour
+	 * mélanger notre grille de sudoku.
+	 */
+	public void shuffling(int[][] grid) {
+		
+	}
+
+	/*
 	 * Dans un sudoku, il est possible d'intervertir les lignes d'un même trio : Les
 	 * lignes 1, 2 et 3 peuvent être interverties, les lignes 4, 5, 6 aussi Mais les
 	 * lignes 3 et 4 ne peuvent l'être.
@@ -95,7 +103,7 @@ public class Shuffle {
 			for (int i = 0; i < 9; i++) {
 
 				int tempColumn = grid[i][column1a];
-				grid[i][column1a]= grid[i][column2a];
+				grid[i][column1a] = grid[i][column2a];
 				grid[i][column2a] = tempColumn;
 
 				tempColumn = grid[i][column1b];

@@ -34,7 +34,7 @@ class DisplaySudokyTest {
 				{ true, true, true, true, true, true, true, true, true },
 				{ true, true, true, true, true, true, true, true, true },
 				{ true, true, true, true, true, true, true, true, true } };
-		
+
 		boolean[][] rowCheck = { { false, false, false, false, false, false, false, false, false },
 				{ false, false, false, false, false, false, false, false, false },
 				{ false, false, false, false, false, false, false, false, false },
@@ -55,7 +55,7 @@ class DisplaySudokyTest {
 				{ false, false, false, false, false, false, false, false, false },
 				{ false, false, false, false, false, false, false, false, false } };
 
-		//On vérifie que chaque ligne contient les 9 chffres
+		// On vérifie que chaque ligne contient les 9 chffres
 		int[][] grid = displaySudoku.createGrid(1);
 		for (int i = 0; i < 9; i++) {
 			for (int j = 0; j < 9; j++) {
@@ -63,15 +63,15 @@ class DisplaySudokyTest {
 				rowCheck[i][number - 1] = true;
 			}
 		}
-		
-		//On vérifie que chaque colonne contient les 9 chffres
+
+		// On vérifie que chaque colonne contient les 9 chffres
 		for (int i = 0; i < 9; i++) {
 			for (int j = 0; j < 9; j++) {
 				int number = grid[j][i];
 				colunmCheck[number - 1][i] = true;
 			}
 		}
-		
+
 		Assert.assertArrayEquals("Tout les lignes ont les 9 chiffres", allGood, rowCheck);
 		Assert.assertArrayEquals("Tout les colonnes ont les 9 chiffres", allGood, colunmCheck);
 

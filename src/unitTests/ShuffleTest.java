@@ -10,7 +10,7 @@ import sudoku.Shuffle;
 class ShuffleTest {
 
 	@Test
-	void isShufflingTest() {
+	void isShuffledTest() {
 		Shuffle shuffle = new Shuffle();
 		int[][] originalGrid = { { 1, 5, 9, 3, 4, 6, 7, 2, 8 }, { 4, 6, 7, 8, 2, 1, 9, 5, 3 },
 				{ 8, 2, 3, 7, 5, 9, 1, 4, 6 }, { 9, 3, 6, 1, 7, 5, 2, 8, 4 }, { 7, 1, 5, 4, 8, 2, 6, 3, 9 },

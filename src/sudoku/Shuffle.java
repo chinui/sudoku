@@ -1,5 +1,7 @@
 package sudoku;
 
+import java.util.Random;
+
 /*  
  * Le but de cette classe est de d'intervertir les lignes et les colonnes d'un sudoku
  * pour ainsi en créer un nouveau, sans créer de doublon dans les lignes, les colonnes et les cases.
@@ -11,49 +13,49 @@ public class Shuffle {
 	 * notre grille de sudoku.
 	 */
 	public void shuffling(int[][] grid) {
-		
-		// On va mélanger au maximum 100 fois
-		int shufflingNumber = (int) (Math.random() * 100);
-		for (int i = 0; i < shufflingNumber; i++) {
+
+		// On va mélanger 100 fois
+		for (int i = 0; i < 100; i++) {
 
 			// On choisit une méthode de mélange au hasard parmi les 4
-			int shufflingChoice = (int) (Math.random() * 3);
-			if (shufflingChoice == 0) {
+			Random rand = new Random();
+			int shufflingChoice = rand.nextInt(4);
+			if (shufflingChoice == 3) {
 				// Les lignes vont de 0 à 8.
-				int row1 = (int) (Math.random() * 8);
+				int row1 = rand.nextInt(9);
 				int row2 = row1 + 1;
 				if (!((row1 >= 0 && row1 <= 2 && row2 >= 0 && row2 <= 2)
 						|| (row1 >= 3 && row1 <= 5 && row2 >= 3 && row2 <= 5)
 						|| (row1 >= 6 && row1 <= 8 && row2 >= 6 && row2 <= 8))) {
-					row2 = row1 - 1;
+					row2 = row1 - 2;
 
 				}
 				rowInterchange(grid, row1, row2);
-			} else if (shufflingChoice == 1) {
+			} else if (shufflingChoice == 2) {
 				// Les colonnes vont de 0 à 8.
-				int column1 = (int) (Math.random() * 8);
+				int column1 = rand.nextInt(9);
 				int column2 = column1 + 1;
 				if (!((column1 >= 0 && column1 <= 2 && column2 >= 0 && column2 <= 2)
 						|| (column1 >= 3 && column1 <= 5 && column2 >= 3 && column2 <= 5)
 						|| (column1 >= 6 && column1 <= 8 && column2 >= 6 && column2 <= 8))) {
-					column2 = column1 - 1;
+					column2 = column1 - 2;
 
 				}
 				columnInterchange(grid, column1, column2);
-			} else if (shufflingChoice == 2) {
+			} else if (shufflingChoice == 1) {
 				// Les neuf lignes sont regroupées par groupe de 3
-				int bigRow1 = (int) (Math.random() * 2);
+				int bigRow1 = rand.nextInt(3);
 				int bigRow2 = bigRow1 + 1;
 				if (bigRow2 > 2) {
-					bigRow2 = bigRow1 - 1;
+					bigRow2 = 0;
 				}
 				bigRowInterchange(grid, bigRow1, bigRow2);
 			} else {
 				// Les neuf colonnes sont regroupées par groupe de 3
-				int bigColumn1 = (int) (Math.random() * 2);
+				int bigColumn1 = rand.nextInt(3);
 				int bigColumn2 = bigColumn1 + 1;
 				if (bigColumn2 > 2) {
-					bigColumn2 = bigColumn1 - 1;
+					bigColumn2 = 0;
 				}
 				bigColumnInterchange(grid, bigColumn1, bigColumn2);
 			}

@@ -17,14 +17,15 @@ class ShuffleTest {
 				{ 2, 8, 4, 6, 9, 3, 5, 7, 1 }, { 5, 9, 8, 2, 6, 4, 3, 1, 7 }, { 3, 4, 2, 9, 1, 7, 8, 6, 5 },
 				{ 6, 7, 1, 5, 3, 8, 4, 9, 2 } };
 
-		int[][] grid = { { 1, 5, 9, 3, 4, 6, 7, 2, 8 }, { 4, 6, 7, 8, 2, 1, 9, 5, 3 },
-				{ 8, 2, 3, 7, 5, 9, 1, 4, 6 }, { 9, 3, 6, 1, 7, 5, 2, 8, 4 }, { 7, 1, 5, 4, 8, 2, 6, 3, 9 },
-				{ 2, 8, 4, 6, 9, 3, 5, 7, 1 }, { 5, 9, 8, 2, 6, 4, 3, 1, 7 }, { 3, 4, 2, 9, 1, 7, 8, 6, 5 },
-				{ 6, 7, 1, 5, 3, 8, 4, 9, 2 } };
-		
+		int[][] grid = { { 1, 5, 9, 3, 4, 6, 7, 2, 8 }, { 4, 6, 7, 8, 2, 1, 9, 5, 3 }, { 8, 2, 3, 7, 5, 9, 1, 4, 6 },
+				{ 9, 3, 6, 1, 7, 5, 2, 8, 4 }, { 7, 1, 5, 4, 8, 2, 6, 3, 9 }, { 2, 8, 4, 6, 9, 3, 5, 7, 1 },
+				{ 5, 9, 8, 2, 6, 4, 3, 1, 7 }, { 3, 4, 2, 9, 1, 7, 8, 6, 5 }, { 6, 7, 1, 5, 3, 8, 4, 9, 2 } };
+
 		shuffle.shuffling(originalGrid);
 
-		// On vérifie après mélange, qu'il y a toujours les 9 premiers chiffres par lignes et par colonnes
+		// On vérifie après mélange, qu'il y a toujours les 9 premiers chiffres par
+		// lignes et par colonnes
+		// Grille de résultat attendu
 		final boolean[][] allGood = { { true, true, true, true, true, true, true, true, true },
 				{ true, true, true, true, true, true, true, true, true },
 				{ true, true, true, true, true, true, true, true, true },
@@ -35,6 +36,7 @@ class ShuffleTest {
 				{ true, true, true, true, true, true, true, true, true },
 				{ true, true, true, true, true, true, true, true, true } };
 
+		// Grille de départ pour les lignes
 		boolean[][] rowCheck = { { false, false, false, false, false, false, false, false, false },
 				{ false, false, false, false, false, false, false, false, false },
 				{ false, false, false, false, false, false, false, false, false },
@@ -45,6 +47,7 @@ class ShuffleTest {
 				{ false, false, false, false, false, false, false, false, false },
 				{ false, false, false, false, false, false, false, false, false } };
 
+		// Grille de départ pour les colonnes
 		boolean[][] colunmCheck = { { false, false, false, false, false, false, false, false, false },
 				{ false, false, false, false, false, false, false, false, false },
 				{ false, false, false, false, false, false, false, false, false },
@@ -56,6 +59,9 @@ class ShuffleTest {
 				{ false, false, false, false, false, false, false, false, false } };
 
 		// On vérifie que chaque ligne contient les 9 chiffres
+		// A chaque fois qu'un chiffre apparait sur une ligne, il fait passer son false
+		// à true.
+		// Exemple si grid[3][1] = 5, alors rowCheck[3][5] = true;
 		for (int i = 0; i < 9; i++) {
 			for (int j = 0; j < 9; j++) {
 				int number = grid[i][j];
@@ -64,6 +70,9 @@ class ShuffleTest {
 		}
 
 		// On vérifie que chaque colonne contient les 9 chiffres
+		// A chaque fois qu'un chiffre apparait sur une colonnes, il fait passer son
+		// false à true.
+		// Exemple si grid[3][1] = 5, alors columnCheck[5][1] = true;
 		for (int i = 0; i < 9; i++) {
 			for (int j = 0; j < 9; j++) {
 				int number = grid[j][i];
@@ -73,8 +82,9 @@ class ShuffleTest {
 
 		Assert.assertArrayEquals("Tout les lignes ont les 9 chiffres", allGood, rowCheck);
 		Assert.assertArrayEquals("Tout les colonnes ont les 9 chiffres", allGood, colunmCheck);
-		
-		Assert.assertNotEquals("Les deux grilles doivent être différentes, car l'une a été mélangée.", originalGrid, grid);
+
+		Assert.assertNotEquals("Les deux grilles doivent être différentes, car l'une a été mélangée.", originalGrid,
+				grid);
 	}
 
 	@Test
@@ -92,6 +102,7 @@ class ShuffleTest {
 		int row0 = 0;
 		int row1 = 1;
 
+		// On extrait les deux lignes
 		for (int j = 0; j < 9; j++) {
 			originalRow0[j] = originalGrid[row0][j];
 			originalRow1[j] = originalGrid[row1][j];
@@ -100,6 +111,8 @@ class ShuffleTest {
 
 		int[] interchangeRow0 = new int[9];
 		int[] interchangeRow1 = new int[9];
+
+		// On extrait les lignes après interversion
 		for (int j = 0; j < 9; j++) {
 			interchangeRow0[j] = originalGrid[row0][j];
 			interchangeRow1[j] = originalGrid[row1][j];
@@ -142,6 +155,7 @@ class ShuffleTest {
 		int column7 = 7;
 		int column8 = 8;
 
+		// On extrait les colonnes
 		for (int i = 0; i < 9; i++) {
 			originalColumn7[i] = originalGrid[i][column7];
 			originalColumn8[i] = originalGrid[i][column8];
@@ -150,6 +164,7 @@ class ShuffleTest {
 
 		int[] interchangeColumn7 = new int[9];
 		int[] interchangeColumn8 = new int[9];
+		// On extrait les colonnes après interversion
 		for (int i = 0; i < 9; i++) {
 			interchangeColumn7[i] = originalGrid[i][column7];
 			interchangeColumn8[i] = originalGrid[i][column8];
@@ -197,6 +212,7 @@ class ShuffleTest {
 		int bigRow0 = 0;
 		int bigRow2 = 2;
 
+		// On extrait les lignes avant interversion
 		for (int j = 0; j < 9; j++) {
 			// Ligne 1, 2 et 3
 			originalRow0[j] = originalGrid[bigRow0 * 3 + 0][j];
@@ -218,6 +234,8 @@ class ShuffleTest {
 		int[] interchangeRow6 = new int[9];
 		int[] interchangeRow7 = new int[9];
 		int[] interchangeRow8 = new int[9];
+
+		// On extrait les lignes après interversion
 		for (int j = 0; j < 9; j++) {
 			// Ligne 1, 2 et 3
 			interchangeRow0[j] = originalGrid[bigRow0 * 3 + 0][j];
@@ -277,6 +295,7 @@ class ShuffleTest {
 		int bigColumn0 = 0;
 		int bigColumn2 = 2;
 
+		// On extrait les colonnes avant l'interversion
 		for (int i = 0; i < 9; i++) {
 			// Colonne 1, 2 et 3
 			originalColumn0[i] = originalGrid[i][bigColumn0 * 3 + 0];
@@ -298,6 +317,8 @@ class ShuffleTest {
 		int[] interchangeColumn6 = new int[9];
 		int[] interchangeColumn7 = new int[9];
 		int[] interchangeColumn8 = new int[9];
+
+		// On extrait les colonnes après l'interversion
 		for (int i = 0; i < 9; i++) {
 			// Colonne 1, 2 et 3
 			interchangeColumn0[i] = originalGrid[i][bigColumn0 * 3 + 0];

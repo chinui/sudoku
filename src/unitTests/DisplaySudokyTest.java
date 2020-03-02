@@ -23,8 +23,11 @@ class DisplaySudokyTest {
 
 	@Test
 	void IsARealSudoku() {
+		// On vérifie après mélange, qu'il y a toujours les 9 premiers chiffres par
+		// lignes et par colonnes.
 		DisplaySudoku displaySudoku = new DisplaySudoku();
-		// On vérifie qu'il y a bien les 9 premiers chiffres par lignes et par colonnes
+
+		// Grille de résultat attendu
 		final boolean[][] allGood = { { true, true, true, true, true, true, true, true, true },
 				{ true, true, true, true, true, true, true, true, true },
 				{ true, true, true, true, true, true, true, true, true },
@@ -35,6 +38,7 @@ class DisplaySudokyTest {
 				{ true, true, true, true, true, true, true, true, true },
 				{ true, true, true, true, true, true, true, true, true } };
 
+		// Grille de départ pour les lignes
 		boolean[][] rowCheck = { { false, false, false, false, false, false, false, false, false },
 				{ false, false, false, false, false, false, false, false, false },
 				{ false, false, false, false, false, false, false, false, false },
@@ -45,6 +49,7 @@ class DisplaySudokyTest {
 				{ false, false, false, false, false, false, false, false, false },
 				{ false, false, false, false, false, false, false, false, false } };
 
+		// Grille de départ pour les colonnes
 		boolean[][] colunmCheck = { { false, false, false, false, false, false, false, false, false },
 				{ false, false, false, false, false, false, false, false, false },
 				{ false, false, false, false, false, false, false, false, false },
@@ -55,7 +60,10 @@ class DisplaySudokyTest {
 				{ false, false, false, false, false, false, false, false, false },
 				{ false, false, false, false, false, false, false, false, false } };
 
-		// On vérifie que chaque ligne contient les 9 chffres
+		// On vérifie que chaque ligne contient les 9 chiffres
+		// A chaque fois qu'un chiffre apparait sur une ligne, il fait passer son false
+		// à true.
+		// Exemple si grid[3][1] = 5, alors rowCheck[3][5] = true;
 		int[][] grid = displaySudoku.createGrid(1);
 		for (int i = 0; i < 9; i++) {
 			for (int j = 0; j < 9; j++) {
@@ -64,7 +72,10 @@ class DisplaySudokyTest {
 			}
 		}
 
-		// On vérifie que chaque colonne contient les 9 chffres
+		// On vérifie que chaque colonne contient les 9 chiffres
+		// A chaque fois qu'un chiffre apparait sur une colonnes, il fait passer son
+		// false à true.
+		// Exemple si grid[3][1] = 5, alors columnCheck[5][1] = true;
 		for (int i = 0; i < 9; i++) {
 			for (int j = 0; j < 9; j++) {
 				int number = grid[j][i];

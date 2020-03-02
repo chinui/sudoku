@@ -56,10 +56,10 @@ class DisplaySudokyTest {
 				{ false, false, false, false, false, false, false, false, false } };
 
 		//On vérifie que chaque ligne contient les 9 chffres
-		int[][] square = displaySudoku.createGrid(1);
+		int[][] grid = displaySudoku.createGrid(1);
 		for (int i = 0; i < 9; i++) {
 			for (int j = 0; j < 9; j++) {
-				int number = square[i][j];
+				int number = grid[i][j];
 				rowCheck[i][number - 1] = true;
 			}
 		}
@@ -67,7 +67,7 @@ class DisplaySudokyTest {
 		//On vérifie que chaque colonne contient les 9 chffres
 		for (int i = 0; i < 9; i++) {
 			for (int j = 0; j < 9; j++) {
-				int number = square[j][i];
+				int number = grid[j][i];
 				colunmCheck[number - 1][i] = true;
 			}
 		}

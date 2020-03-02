@@ -2,6 +2,7 @@ package unitTests;
 
 import static org.junit.Assert.assertArrayEquals;
 
+import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 
 import sudoku.Shuffle;
@@ -10,6 +11,70 @@ class ShuffleTest {
 
 	@Test
 	void isShufflingTest() {
+		Shuffle shuffle = new Shuffle();
+		int[][] originalGrid = { { 1, 5, 9, 3, 4, 6, 7, 2, 8 }, { 4, 6, 7, 8, 2, 1, 9, 5, 3 },
+				{ 8, 2, 3, 7, 5, 9, 1, 4, 6 }, { 9, 3, 6, 1, 7, 5, 2, 8, 4 }, { 7, 1, 5, 4, 8, 2, 6, 3, 9 },
+				{ 2, 8, 4, 6, 9, 3, 5, 7, 1 }, { 5, 9, 8, 2, 6, 4, 3, 1, 7 }, { 3, 4, 2, 9, 1, 7, 8, 6, 5 },
+				{ 6, 7, 1, 5, 3, 8, 4, 9, 2 } };
+
+		int[][] grid = { { 1, 5, 9, 3, 4, 6, 7, 2, 8 }, { 4, 6, 7, 8, 2, 1, 9, 5, 3 },
+				{ 8, 2, 3, 7, 5, 9, 1, 4, 6 }, { 9, 3, 6, 1, 7, 5, 2, 8, 4 }, { 7, 1, 5, 4, 8, 2, 6, 3, 9 },
+				{ 2, 8, 4, 6, 9, 3, 5, 7, 1 }, { 5, 9, 8, 2, 6, 4, 3, 1, 7 }, { 3, 4, 2, 9, 1, 7, 8, 6, 5 },
+				{ 6, 7, 1, 5, 3, 8, 4, 9, 2 } };
+		
+		shuffle.shuffling(originalGrid);
+
+		// On vérifie après mélange, qu'il y a toujours les 9 premiers chiffres par lignes et par colonnes
+		final boolean[][] allGood = { { true, true, true, true, true, true, true, true, true },
+				{ true, true, true, true, true, true, true, true, true },
+				{ true, true, true, true, true, true, true, true, true },
+				{ true, true, true, true, true, true, true, true, true },
+				{ true, true, true, true, true, true, true, true, true },
+				{ true, true, true, true, true, true, true, true, true },
+				{ true, true, true, true, true, true, true, true, true },
+				{ true, true, true, true, true, true, true, true, true },
+				{ true, true, true, true, true, true, true, true, true } };
+
+		boolean[][] rowCheck = { { false, false, false, false, false, false, false, false, false },
+				{ false, false, false, false, false, false, false, false, false },
+				{ false, false, false, false, false, false, false, false, false },
+				{ false, false, false, false, false, false, false, false, false },
+				{ false, false, false, false, false, false, false, false, false },
+				{ false, false, false, false, false, false, false, false, false },
+				{ false, false, false, false, false, false, false, false, false },
+				{ false, false, false, false, false, false, false, false, false },
+				{ false, false, false, false, false, false, false, false, false } };
+
+		boolean[][] colunmCheck = { { false, false, false, false, false, false, false, false, false },
+				{ false, false, false, false, false, false, false, false, false },
+				{ false, false, false, false, false, false, false, false, false },
+				{ false, false, false, false, false, false, false, false, false },
+				{ false, false, false, false, false, false, false, false, false },
+				{ false, false, false, false, false, false, false, false, false },
+				{ false, false, false, false, false, false, false, false, false },
+				{ false, false, false, false, false, false, false, false, false },
+				{ false, false, false, false, false, false, false, false, false } };
+
+		// On vérifie que chaque ligne contient les 9 chffres
+		for (int i = 0; i < 9; i++) {
+			for (int j = 0; j < 9; j++) {
+				int number = grid[i][j];
+				rowCheck[i][number - 1] = true;
+			}
+		}
+
+		// On vérifie que chaque colonne contient les 9 chffres
+		for (int i = 0; i < 9; i++) {
+			for (int j = 0; j < 9; j++) {
+				int number = grid[j][i];
+				colunmCheck[number - 1][i] = true;
+			}
+		}
+
+		Assert.assertArrayEquals("Tout les lignes ont les 9 chiffres", allGood, rowCheck);
+		Assert.assertArrayEquals("Tout les colonnes ont les 9 chiffres", allGood, colunmCheck);
+		
+		Assert.assertNotEquals("Les deux grilles doivent avoir été mélangées", originalGrid, grid);
 	}
 
 	@Test
